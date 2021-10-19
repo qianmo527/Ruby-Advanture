@@ -29,15 +29,15 @@ public class NPCdialog : MonoBehaviour
             img_dialog.SetActive(false);
             timer = displayTime;
         }
-        if (UIHealthBar.instance.robotNum <= 0) {
-            UIHealthBar.instance.ifCompleteTask = true;
+        if (GameManager.instance.robotNum <= 0) {
+            GameManager.instance.ifCompleteTask = true;
         }
     }
 
     public void DisplayDialog() {
         img_dialog.SetActive(true);
-        UIHealthBar.instance.hasTask = true;
-        if (UIHealthBar.instance.ifCompleteTask) {
+        GameManager.instance.hasTask = true;
+        if (GameManager.instance.ifCompleteTask) {
             text.text = "完成的不错嘛";
             audioSource.Play();
             Invoke("Mute", 3);

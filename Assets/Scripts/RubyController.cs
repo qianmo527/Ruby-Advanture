@@ -135,7 +135,7 @@ public class RubyController : MonoBehaviour
 
     // 发射子弹的方法
     private void Launch() {
-        if (UIHealthBar.instance.hasTask) {
+        if (GameManager.instance.hasTask) {
             GameObject bulletObject = Instantiate(bulletPrefab,transform.position+Vector3.up*0.5f,Quaternion.identity);
             Bullet bullet= bulletObject.GetComponent<Bullet>();
             bullet.Launch(lookDirection,300);

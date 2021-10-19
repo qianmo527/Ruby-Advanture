@@ -96,8 +96,8 @@ public class EnemyController : MonoBehaviour
         Invoke("PlayFixSound", 0.5f);
         Invoke("StopAudio", 1);
         Instantiate(hitEffect, transform.position+Vector3.up*0.5f, Quaternion.identity);
-        if (UIHealthBar.instance.robotNum > 0) {
-            UIHealthBar.instance.robotNum -= 1;
+        if (GameManager.instance.robotNum > 0) {
+            GameManager.instance.robotNum -= 1;
         }
     }
 

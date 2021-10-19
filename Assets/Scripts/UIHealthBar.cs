@@ -7,9 +7,6 @@ public class UIHealthBar : MonoBehaviour
 {
     public Image healthBar;
     public RubyController rb;
-    public bool hasTask = false;
-    public bool ifCompleteTask = false;
-    public int robotNum;
 
     public static UIHealthBar instance {
         get;
@@ -19,7 +16,6 @@ public class UIHealthBar : MonoBehaviour
     private void Awake() {
         // 单例
         instance = this;
-        robotNum = GameObject.FindGameObjectsWithTag("Enemy").Length;
     }
 
     // Start is called before the first frame update

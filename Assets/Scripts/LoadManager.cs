@@ -12,9 +12,35 @@ public class LoadManager : MonoBehaviour
     public Slider slider;
     public Text text;
     public bool cancel = false;
+    public GameObject warningUI;
+
+    public static LoadManager instance;
+
+    private void Awake() {
+        // 单例
+        if (instance==null) {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }else {
+            Destroy(gameObject);
+        }
+    }
 
     private void Update() {
         
+    }
+
+    // 显示警告面板
+    public void ShowWarning(string content) {
+        
+
+        StartCoroutine("_ShowWarning", content);
+    }
+    private IEnumerator _ShowWarning(string content) {
+        
+        warningUI.SetActive(true);
+
+        yield return null;
     }
 
     public void LoadSingleLevel() {
