@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b9b1ab142209704e87c7f3704dfbb0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  img_dialog: {fileID: 4418655257815619982}
+  img_dialog: {fileID: 8668061793806251956}
   displayTime: 5
   text: {fileID: 3357268350038402101}
 --- !u!95 &2017682234960125466
@@ -323,7 +323,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u5E2E\u7237\u4FEE\u597D\u5168\u90E8\u673A\u5668\u4EBA\n\u61C2\uFF1F"
+  m_Text: "\u5E2E\u6211\u4FEE\u597D\u5168\u90E8\u673A\u5668\u4EBA"
 --- !u!114 &6672091352648520436
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -456,7 +456,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2420088481384540128
 RectTransform:
   m_ObjectHideFlags: 0

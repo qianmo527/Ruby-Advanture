@@ -26,6 +26,8 @@ public class Bullet : MonoBehaviour
         if (enemyController!=null){
             enemyController.Fix();
         }
-        Destroy(gameObject);
+        if (other.gameObject.tag != "Bullet") {
+            Destroy(gameObject);
+        }
     }
 }

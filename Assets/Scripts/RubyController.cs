@@ -5,11 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class RubyController : MonoBehaviour
 {
+    public VariableJoystick joystick;
     private Rigidbody2D rigidbody2d;
     public Vector2 respawn = new Vector2(0, 0);
     public float maxHealth = 5;
     public float currentHealth;
     public int speed = 3;
+    public float attackCD = 1;
+    private float attackTimer;
 
     // 无敌时间
     public float timeInvincible = 2.0f;
@@ -60,12 +63,6 @@ public class RubyController : MonoBehaviour
             }
         }
 
-        // Attack method
-        if (Input.GetKeyDown(KeyCode.J))
-        {
-            Launch();
-        }
-
         // 与NPC的对话
         if (Input.GetKeyDown(KeyCode.T)) {
             // 射线检测是否在NPC周围
@@ -83,6 +80,8 @@ public class RubyController : MonoBehaviour
     {
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
+        horizontal = joystick.Horizontal;
+        vertical = joystick.Vertical;
 
         Vector2 move = new Vector2(horizontal, vertical);
 
@@ -99,17 +98,25 @@ public class RubyController : MonoBehaviour
         else {
             walkAudio.Stop();
         }
-        //动画的控制
-        animator.SetFloat("Look X",lookDirection.x);
-        animator.SetFloat("Look Y",lookDirection.y);
-        animator.SetFloat("Speed",move.magnitude);
-
         //移动
         Vector2 position = transform.position;
         //Ruby位置的移动
         position = position + speed * move * Time.deltaTime;
         rigidbody2d.MovePosition(position);
 
+        //动画的控制
+        animator.SetFloat("Look X",lookDirection.x);
+        animator.SetFloat("Look Y",lookDirection.y);
+        animator.SetFloat("Speed",move.magnitude);
+
+        // Attack method
+        if (Input.GetButton("Attack"))
+        {
+            Launch();
+        }
+        if (attackTimer > 0) {
+            attackTimer -= Time.fixedDeltaTime;
+        }
     }
 
     // 改变血量的方法
@@ -136,6 +143,12 @@ public class RubyController : MonoBehaviour
     // 发射子弹的方法
     private void Launch() {
         if (GameManager.instance.hasTask) {
+            // 计时器
+            if (attackTimer<=0) {
+                attackTimer = attackCD;
+            }else {
+                return;
+            }
             GameObject bulletObject = Instantiate(bulletPrefab,transform.position+Vector3.up*0.5f,Quaternion.identity);
             Bullet bullet= bulletObject.GetComponent<Bullet>();
             bullet.Launch(lookDirection,300);
