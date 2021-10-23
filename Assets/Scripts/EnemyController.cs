@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,6 +22,8 @@ public class EnemyController : MonoBehaviour
     private AudioSource audioSource;
     public AudioClip fixSound;
     public List<AudioClip> hitSound;
+
+     
     
 
     // Start is called before the first frame update
@@ -95,14 +98,14 @@ public class EnemyController : MonoBehaviour
         smokeEffect.Stop();
         Invoke("PlayFixSound", 0.5f);
         Invoke("StopAudio", 1);
-        Instantiate(hitEffect, transform.position+Vector3.up*0.5f, Quaternion.identity);
+        Instantiate(hitEffect, transform.position+Vector3.up*0.5f, Quaternion.identity, transform);
         if (GameManager.instance.robotNum > 0) {
             GameManager.instance.robotNum -= 1;
         }
     }
 
     private void PlayFixSound() {
-        audioSource.PlayOneShot(hitSound[Random.Range(0, 2)]);
+audioSource.PlayOneShot(hitSound[UnityEngine.Random.Range(0, 2)]);
     }
     private void StopAudio() {
         audioSource.Stop();

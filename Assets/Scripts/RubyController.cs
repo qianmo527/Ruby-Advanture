@@ -78,10 +78,8 @@ public class RubyController : MonoBehaviour
 
     void FixedUpdate()
     {
-        float horizontal = Input.GetAxis("Horizontal");
-        float vertical = Input.GetAxis("Vertical");
-        horizontal = joystick.Horizontal;
-        vertical = joystick.Vertical;
+        float horizontal = joystick.Horizontal;
+        float vertical = joystick.Vertical;
 
         Vector2 move = new Vector2(horizontal, vertical);
 
@@ -109,11 +107,6 @@ public class RubyController : MonoBehaviour
         animator.SetFloat("Look Y",lookDirection.y);
         animator.SetFloat("Speed",move.magnitude);
 
-        // Attack method
-        if (Input.GetButton("Attack"))
-        {
-            Launch();
-        }
         if (attackTimer > 0) {
             attackTimer -= Time.fixedDeltaTime;
         }
@@ -141,7 +134,7 @@ public class RubyController : MonoBehaviour
     }
 
     // 发射子弹的方法
-    private void Launch() {
+    public void Launch() {
         if (GameManager.instance.hasTask) {
             // 计时器
             if (attackTimer<=0) {

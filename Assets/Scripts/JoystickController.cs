@@ -7,7 +7,8 @@ public class JoystickController : MonoBehaviour
     public VariableJoystick joystick;
 
     void Awake() {
-        if (Application.platform != RuntimePlatform.Android && !Application.isEditor) {
+        if (Application.platform != RuntimePlatform.Android && !Application.isEditor) 
+        {
             Destroy(gameObject);
         }
     }
@@ -21,6 +22,11 @@ public class JoystickController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        foreach (KeyCode keyCode in System.Enum.GetValues(typeof(KeyCode)))
+        {
+            if (Input.GetKeyDown(keyCode)) {
+                print(keyCode);
+            }
+        }
     }
 }

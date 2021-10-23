@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - Bullet
+  - AchievementSender
   layers:
   - Default
   - TransparentFX
